@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62" height="62" viewBox="0 0 62 62">
+  <defs>
+    <linearGradient id="linear-gradient" x2="0.865" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1c20"/>
+      <stop offset="0.66" stop-color="#05070d"/>
+      <stop offset="1" stop-color="#062f21"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1462af"/>
+      <stop offset="1" stop-color="#0d3d6e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_129048" data-name="Group 129048" transform="translate(-899 -2226.5)">
+    <rect id="Screenshot_2025-10-06_at_12.15.43_PM" data-name="Screenshot 2025-10-06 at 12.15.43 PM" width="62" height="62" rx="10" transform="translate(899 2226.5)" fill="url(#linear-gradient)"/>
+    <g id="Layer_2" data-name="Layer 2" transform="translate(914 2242)">
+      <g id="Layer_1_copy_2" data-name="Layer 1 copy 2">
+        <g id="_93" data-name="93">
+          <path id="Path_163406" data-name="Path 163406" d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm8.75,20.219A2.552,2.552,0,0,1,22.2,22.771H9.8a2.552,2.552,0,0,1,0-5.1H22.2A2.552,2.552,0,0,1,24.75,20.219Zm0-8.437A2.552,2.552,0,0,1,22.2,14.333H9.8a2.552,2.552,0,1,1,0-5.1H22.2A2.552,2.552,0,0,1,24.75,11.781Z" fill="url(#linear-gradient-2)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
