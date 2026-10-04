@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// Public URL of the page — used for canonical / Open Graph tags in index.html.
+// Public URL of the page, used for canonical / Open Graph tags in index.html.
 // Override at build time: VITE_SITE_URL=https://marketacademy.in/<folder>/ npm run build
 process.env.VITE_SITE_URL ??= 'https://marketacademy.in/expert-trading-workshop/'
 

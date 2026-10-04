@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import logo from '../../assets/brand/normal_logo.png'
-import { SITE_LINKS } from '../../config/event'
 import { useBooking } from '../../context/BookingContext'
 import { useScrolled } from '../../hooks/useScrolled'
 import { scrollToId } from '../../lib/smoothScroll'
 
 const NAV = [
-  { label: 'About', href: SITE_LINKS.about, external: true },
   { label: 'Session', id: 'session' },
   { label: 'Slots', id: 'slots' },
   { label: 'Venue', id: 'venue' },
@@ -43,7 +41,7 @@ export default function Header() {
             window.lenis ? window.lenis.scrollTo(0, { duration: 1.2 }) : window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
           className={`block ${scrolled ? 'py-3 lg:py-2' : 'py-2'}`}
-          aria-label="Market Academy — back to top"
+          aria-label="Market Academy, back to top"
         >
           <img src={logo} alt="Market Academy" width="170" height="49" className="h-auto w-[111px] lg:w-[147px]" fetchPriority="high" />
         </a>

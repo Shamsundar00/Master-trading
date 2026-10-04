@@ -73,14 +73,6 @@ export default function Footer() {
               <p className="mt-4 text-xs text-meta md:text-sm">{DISCLAIMERS.market}</p>
             </div>
           </div>
-
-          {/* Full educational disclaimer (Market Academy Terms & Conditions) */}
-          <div className="border-t border-line pt-6">
-            <p className="text-[11px] leading-5 text-meta md:text-xs md:leading-5">
-              <span className="font-medium text-muted">Educational Purpose Disclaimer: </span>
-              {DISCLAIMERS.educational}
-            </p>
-          </div>
         </div>
       </div>
     </footer>

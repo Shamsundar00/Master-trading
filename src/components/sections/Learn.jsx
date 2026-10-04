@@ -5,7 +5,7 @@ import lightbulb from '../../assets/icons/lightbulb.png'
 import SectionTitle from '../ui/SectionTitle'
 
 // Topics from the ad script: basics, market analysis, chart analysis, entry, exit,
-// risk management, strategy selection — grouped into the reference's 2×2 card grid.
+// risk management, strategy selection, grouped into the reference's 2×2 card grid.
 const TOPICS = [
   [molecule, 'Trading Basics & Market Analysis', 'How the market works, the key terms, and how to read the bigger picture before you trade.'],
   [report, 'Chart Analysis', 'Read candlesticks, trends, support and resistance, and how price behaves around key levels.'],

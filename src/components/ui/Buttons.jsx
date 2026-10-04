@@ -18,7 +18,7 @@ const Arrow = ({ big }) => (
   </span>
 )
 
-// White pill with dark arrow chip — main "Book" CTA (hero, mindset band, final CTA).
+// White pill with dark arrow chip: main "Book" CTA (hero, mindset band, final CTA).
 export function WhiteCta({ onClick, size = 'md', children, className = '' }) {
   const hero = size === 'hero'
   return (
@@ -37,7 +37,7 @@ export function WhiteCta({ onClick, size = 'md', children, className = '' }) {
   )
 }
 
-// Blue pill with dark arrow chip — "Book Your Slot Now" (venue, footer).
+// Blue pill with dark arrow chip: "Book Your Slot Now" (venue, footer).
 export function BlueCta({ onClick, children = 'Book Your Slot Now', className = '' }) {
   return (
     <button

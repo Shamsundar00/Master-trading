@@ -3,7 +3,7 @@ import { useBooking } from '../../context/BookingContext'
 import { formatWeekday, formatDayMonth, nextOpenSlot, slotStart, slotsByDay } from '../../lib/slots'
 import { WhiteCta } from '../ui/Buttons'
 import Countdown from '../ui/Countdown'
-import { CalendarIcon, ClockIcon, MapPinIcon } from '../ui/Icons'
+import { CalendarIcon, CheckIcon, ClockIcon, MapPinIcon } from '../ui/Icons'
 import SlotOption from '../ui/SlotOption'
 
 function MetaItem({ icon: Icon, label, children, className = '' }) {
@@ -72,10 +72,10 @@ export default function Hero() {
             </h1>
 
             <div className="mt-6 space-y-4 text-xs sm:text-sm lg:space-y-2">
-              <p className="font-medium text-white">Expert Trading Workshop in Chennai – Booking Fee Just ₹{EVENT.price}!</p>
+              <p className="font-medium text-white">3-Hour Expert Trading Workshop in Chennai. Booking Fee Just ₹{EVENT.price}!</p>
               <p className="text-muted">
-                Been planning to learn trading for a long time? Don&apos;t miss this. Enrich Money is conducting an expert trading workshop in Chennai,
-                taking you from trading basics to market analysis, chart analysis, entry, exit, risk management and strategy selection.
+                Been planning to learn trading for a long time? Don&apos;t miss this. Learn trading basics, market analysis, chart analysis, entry,
+                exit, risk management and strategy selection in one structured, expert-led session.
               </p>
             </div>
 
@@ -84,9 +84,9 @@ export default function Hero() {
                 Oct 10 &amp; 11, 2026
               </MetaItem>
               <MetaItem icon={ClockIcon} label="Slots" className="md:col-span-4">
-                10AM – 1:30PM
+                10AM - 1:30PM
                 <br />
-                3PM – 6:30PM
+                3PM - 6:30PM
               </MetaItem>
               <MetaItem icon={MapPinIcon} label="Venue" className="hidden md:col-span-4 md:block">
                 Guindy, Chennai
@@ -103,6 +103,15 @@ export default function Hero() {
                 />
               )}
             </div>
+
+            <ul className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted lg:justify-start">
+              {['Secure payment via Cashfree', 'Confirmation on email', 'Limited seats per slot'].map((t) => (
+                <li key={t} className="flex items-center gap-1.5">
+                  <CheckIcon className="size-3.5 text-ma-icon" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="hidden lg:col-span-1 lg:block" />

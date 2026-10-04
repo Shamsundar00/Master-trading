@@ -12,7 +12,7 @@ export const EVENT = {
   price: 999,
   // Optional MRP shown struck-through next to the price. Leave null to hide.
   originalPrice: null,
-  // Optional slug of this event on the Enrich Money events backend
+  // Optional slug of this event on the events backend
   // (the reference uses `price-action-masterclass`).
   slug: import.meta.env.VITE_EVENT_SLUG || 'expert-trading-workshop',
   eventId: import.meta.env.VITE_EVENT_ID || '',
@@ -21,8 +21,8 @@ export const EVENT = {
 // The four bookable slots. Times are IST.
 // ticketTypeId: the event_ticket_type_id for this slot on the backend. If the
 // backend uses one ticket type for every slot, leave these empty and set
-// VITE_DEFAULT_TICKET_TYPE_ID instead — the chosen slot is still sent in the payload.
-// status: 'available' | 'filling' | 'soldout' — manual override; live seat counts
+// VITE_DEFAULT_TICKET_TYPE_ID instead; the chosen slot is still sent in the payload.
+// status: 'available' | 'filling' | 'soldout' (manual override); live seat counts
 // from the events API (when configured) take priority.
 // seatsLeft: number to show "N seats left", or null to hide the count.
 export const SLOTS = [
@@ -60,8 +60,6 @@ export const SOCIALS = [
 ]
 
 export const SITE_LINKS = {
-  home: 'https://marketacademy.in/',
-  about: 'https://marketacademy.in/about/',
   privacy: 'https://marketacademy.in/privacy-policy/',
   terms: 'https://marketacademy.in/terms-conditions/',
   demat: 'https://onboarding.enrichmoney.in/?lead_source_page_name=marketacademy',
@@ -70,8 +68,6 @@ export const SITE_LINKS = {
 export const DISCLAIMERS = {
   market:
     'Disclaimer: Investment in the securities market are subject to market risks, read all the related documents carefully before investing.',
-  educational:
-    'All courses, content, and materials provided by Market Academy are strictly for educational and informational purposes only. Nothing on this platform constitutes financial advice, investment recommendations, or any solicitation to buy or sell securities. Market Academy and its instructors are not responsible for any investment decisions made based on content shared through the platform. Users are advised to consult a qualified financial advisor before making any investment decisions.',
 }
 
 export const FAQS = [
@@ -102,10 +98,6 @@ export const FAQS = [
   {
     q: 'Can I change my slot after booking?',
     a: 'Please reach us at info@marketacademy.in or (+91) 63837 67446 before your slot begins, and our team will help you, subject to seat availability.',
-  },
-  {
-    q: 'Is this workshop investment advice?',
-    a: 'No. The workshop is strictly for educational and informational purposes. Nothing shared in the session is a recommendation to buy or sell any security.',
   },
 ]
 

@@ -10,8 +10,8 @@ import Learn from './components/sections/Learn'
 import Slots from './components/sections/Slots'
 import Benefits from './components/sections/Benefits'
 import Mindset from './components/sections/Mindset'
-import Organisers from './components/sections/Organisers'
 import Venue from './components/sections/Venue'
+import Steps from './components/sections/Steps'
 import FinalCta from './components/sections/FinalCta'
 import Faq from './components/sections/Faq'
 import Footer from './components/sections/Footer'
@@ -38,8 +38,8 @@ function Landing() {
         <Slots />
         <Benefits />
         <Mindset />
-        <Organisers />
         <Venue />
+        <Steps />
         <FinalCta />
         <Faq />
       </main>

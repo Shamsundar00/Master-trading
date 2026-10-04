@@ -7,7 +7,7 @@ import { pushDataLayer, trackMeta } from '../../lib/tracking'
 import { CheckIcon, CloseIcon, ClockIcon, MapPinIcon, CalendarClockIcon } from '../ui/Icons'
 
 // Cashfree returns to this page with ?payment_status=processing; we poll and swap the
-// status in place (and in the URL) — the same states as the reference's
+// status in place (and in the URL), the same states as the reference's
 // /masterclass-payment-status/{processing,success,failed,pending} pages.
 const THEMES = {
   success: { glow: 'bg-ma-blue', line: 'from-ma-blue via-[#5b9bff] to-ma-blue', ring: 'border-ma-blue/30', icon: 'bg-ma-blue/15 text-[#6EA0FF]' },
@@ -40,7 +40,7 @@ function Details({ slot }) {
 
 export default function PaymentStatus({ initial }) {
   const [status, setStatus] = useState(initial)
-  // Only a status confirmed by polling counts as a conversion — opening
+  // Only a status confirmed by polling counts as a conversion; opening
   // ?payment_status=success directly must not fire a Purchase.
   const [verified, setVerified] = useState(false)
   const [booking] = useState(loadBooking)
@@ -56,7 +56,7 @@ export default function PaymentStatus({ initial }) {
     })
   }, [status, booking.orderId])
 
-  // Conversion events — once per order, so a refresh doesn't double count.
+  // Conversion events, once per order, so a refresh doesn't double count.
   useEffect(() => {
     if (status !== 'success' || !verified || isDemoMode()) return
     const key = `ma_purchase_tracked_${booking.orderId || 'unknown'}`
@@ -97,7 +97,7 @@ export default function PaymentStatus({ initial }) {
       icon: <ClockIcon className="size-7" />,
       kicker: 'Confirmation Pending',
       title: 'Your Payment is Almost Complete',
-      body: "We're facing a small issue confirming your payment status. Please don't worry — kindly wait, our support team will reach out to you shortly to confirm your registration. Please keep your phone and email accessible.",
+      body: "We're facing a small issue confirming your payment status. Please don't worry. Kindly wait, our support team will reach out to you shortly to confirm your registration. Please keep your phone and email accessible.",
     },
   }[status] || {}
 
@@ -138,7 +138,7 @@ export default function PaymentStatus({ initial }) {
           <p className="mt-5 text-xs text-faint">
             Need help? {CONTACT.phoneDisplay} · {CONTACT.email}
           </p>
-          {isDemoMode() && <p className="mt-3 text-[11px] text-amber-300/80">Demo mode — no real payment was made.</p>}
+          {isDemoMode() && <p className="mt-3 text-[11px] text-amber-300/80">Demo mode: no real payment was made.</p>}
         </div>
       </div>
     </main>

@@ -3,7 +3,7 @@
 //   register webhook (this call is the lead capture) → Cashfree checkout → this page
 //   with ?payment_status=processing → poll payment status → success / failed / pending.
 // Every endpoint, ID and key comes from VITE_* env vars (see .env.example) so the
-// Market Academy / Enrich Money team can plug in the ₹999 event without code changes.
+// Market Academy tech team can plug in the ₹999 event without code changes.
 // Note: VITE_* values are bundled into client JS, exactly like the reference page.
 
 import { EVENT } from '../config/event'
@@ -31,7 +31,7 @@ const query = () => new URLSearchParams(location.search)
 export const isBookingConfigured = () => Boolean(CFG.registerUrl)
 export const isDemoMode = () => env.VITE_DEMO_BOOKING === 'true' || query().get('demo') === '1'
 
-// Landing page URL without our own status params — what "Back to workshop" links to.
+// Landing page URL without our own status params: what "Back to workshop" links to.
 export function landingUrl() {
   const q = query()
   ;['payment_status', 'order_id'].forEach((k) => q.delete(k))
@@ -60,7 +60,7 @@ export function saveBooking(info) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...info, savedAt: Date.now() }))
   } catch {
-    /* storage blocked — cookies below still carry the order */
+    /* storage blocked; cookies below still carry the order */
   }
   setCookie('orca_order_id', info.orderId)
   setCookie('orca_user_id', info.userId)
@@ -162,7 +162,7 @@ export async function startBooking(form) {
       location.assign(`${location.pathname}?payment_status=processing&demo=1`)
       return {}
     }
-    console.warn('[booking] VITE_REGISTER_URL is not set — see .env.example')
+    console.warn('[booking] VITE_REGISTER_URL is not set, see .env.example')
     return { error: ERRORS.notLive }
   }
 
@@ -201,7 +201,7 @@ export function pollPaymentStatus(orderId, onDone) {
     const t = setTimeout(() => onDone('success'), 1800)
     return () => clearTimeout(t)
   }
-  // Without an order id or status endpoint there is nothing to poll — fall
+  // Without an order id or status endpoint there is nothing to poll, so fall
   // through to "pending" (support follows up) instead of spinning forever.
   if (!orderId || !CFG.statusUrl) {
     const t = setTimeout(() => onDone('pending'), 1500)

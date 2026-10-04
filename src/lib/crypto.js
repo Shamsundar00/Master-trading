@@ -1,5 +1,5 @@
-// AES-256-CBC with a zero IV, PKCS7 padding and hex ciphertext — byte-compatible
-// with the CryptoJS setup the Enrich Money events webhook expects:
+// AES-256-CBC with a zero IV, PKCS7 padding and hex ciphertext, byte-compatible
+// with the CryptoJS setup the events webhook expects:
 //   CryptoJS.AES.encrypt(json, Utf8.parse(KEY), { mode: CBC, padding: Pkcs7, iv: Hex.parse('0'*32) }).ciphertext.toString(Hex)
 // Implemented with WebCrypto so no extra dependency is bundled.
 

@@ -117,7 +117,7 @@ export default function BookingModal() {
       setError(res.error)
       setLoading(false)
     }
-    // On success the browser is navigating to Cashfree — keep "Processing..." showing.
+    // On success the browser is navigating to Cashfree, so keep "Processing..." showing.
   }
 
   return (

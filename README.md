@@ -1,10 +1,10 @@
-# Market Academy — ₹999 Expert Trading Workshop (Chennai)
+# Market Academy: ₹999 Expert Trading Workshop (Chennai)
 
-Landing page for the 3-hour offline Expert Trading Workshop (Enrich Money × Market Academy),
+Landing page for Market Academy's 3-hour offline Expert Trading Workshop,
 built in **React + Tailwind CSS** with the same design system, behaviour and booking flow as
 [marketacademy.in/price-action-masterclass](https://marketacademy.in/price-action-masterclass/).
 
-- **Dates:** Sat 10 Oct & Sun 11 Oct 2026, 4 slots: 10:00 AM – 1:30 PM and 3:00 PM – 6:30 PM each day
+- **Dates:** Sat 10 Oct & Sun 11 Oct 2026, 4 slots: 10:00 AM - 1:30 PM and 3:00 PM - 6:30 PM each day
 - **Venue:** Sai Pride, A24, 3rd Phase, Thiru Vi Ka Industrial Estate, SIDCO Industrial Estate, Ekkaduthangal, Guindy, Chennai 600032
 - **Fee:** ₹999 booking fee, paid through Cashfree
 
@@ -25,7 +25,7 @@ page via `?payment_status=…`.
 Set `VITE_SITE_URL` to the final public URL before building so the canonical and Open Graph tags
 point to the right place (default: `https://marketacademy.in/expert-trading-workshop/`).
 
-## Booking flow (for the Market Academy / Enrich Money tech team)
+## Booking flow (for the Market Academy tech team)
 
 Same flow as the Price Action Masterclass page:
 
@@ -39,7 +39,7 @@ Same flow as the Price Action Masterclass page:
 ### What the backend needs
 
 - An event record for this workshop (`VITE_EVENT_ID`, slug `VITE_EVENT_SLUG`) priced at ₹999.
-- Slot handling — either:
+- Slot handling, either:
   - **one ticket type per slot** → put each `event_ticket_type_id` in `SLOTS[].ticketTypeId`
     in `src/config/event.js` (also enables live seat counts per slot), **or**
   - **one shared ticket type** → set `VITE_DEFAULT_TICKET_TYPE_ID` and read the chosen slot from
@@ -57,7 +57,7 @@ Payload sent to the register webhook (before encryption):
   "return_url": "https://…/?payment_status=processing&order_id={order_id}",
   "booked_by": { "name": "…", "mobile_number": "9876543210", "email_id": "…" },
   "attendees": [{ "first_name": "…", "last_name": "", "mobile_number": "…", "email_id": "…" }],
-  "slot": { "slot_id": "sat-morning", "date": "2026-10-10", "start_time": "10:00", "end_time": "13:30", "label": "Sat, 10 Oct · 10:00 AM – 1:30 PM" },
+  "slot": { "slot_id": "sat-morning", "date": "2026-10-10", "start_time": "10:00", "end_time": "13:30", "label": "Sat, 10 Oct · 10:00 AM - 1:30 PM" },
   "marketing": { "source": "website", "campaign": "?campaign= | ?utm_campaign= | website", "landing_page": "full URL incl. UTMs", "fbc": "_fbc", "fbp": "_fbp" }
 }
 ```
@@ -91,12 +91,12 @@ builds only (never on localhost). Events:
 
 | Moment | Meta Pixel | GTM dataLayer |
 |---|---|---|
-| Page load | `PageView` | — |
-| Popup opened | — | `workshop_booking_open` |
-| Slot chosen | — | `workshop_slot_selected` |
+| Page load | `PageView` | |
+| Popup opened | | `workshop_booking_open` |
+| Slot chosen | | `workshop_slot_selected` |
 | Valid form submitted | `Lead` | `workshop_lead` |
 | Redirecting to Cashfree | `InitiateCheckout` | `workshop_checkout` |
-| Payment verified | `Purchase` (value, INR) — once per order | `workshop_purchase` |
+| Payment verified | `Purchase` (value, INR), once per order | `workshop_purchase` |
 
 Add a GTM trigger on `workshop_purchase` for the Google Ads conversion: the existing
 `/payment-status/success/` URL trigger does not match this page.
