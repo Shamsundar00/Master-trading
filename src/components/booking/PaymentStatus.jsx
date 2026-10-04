@@ -16,9 +16,27 @@ const THEMES = {
 }
 
 function setStatusInUrl(status) {
-  const q = new URLSearchParams(location.search)
-  q.set('payment_status', status)
-  history.replaceState(null, '', `${location.pathname}?${q}`)
+  try {
+    const q = new URLSearchParams(location.search)
+    q.set('payment_status', status)
+    history.replaceState(null, '', `${location.pathname}?${q}`)
+  } catch {
+    /* some file:// / content:// viewers block history changes */
+  }
+}
+
+// Link back to the landing page, or an in-page reset when the status screen was
+// opened without navigating (demo mode).
+function BackLink({ onBack, href, className, children, ...rest }) {
+  return onBack ? (
+    <button type="button" onClick={onBack} className={className} {...rest}>
+      {children}
+    </button>
+  ) : (
+    <a href={href} className={className} {...rest}>
+      {children}
+    </a>
+  )
 }
 
 function Details({ slot }) {
@@ -38,12 +56,12 @@ function Details({ slot }) {
   )
 }
 
-export default function PaymentStatus({ initial }) {
+export default function PaymentStatus({ initial, booking: given, onBack }) {
   const [status, setStatus] = useState(initial)
   // Only a status confirmed by polling counts as a conversion; opening
   // ?payment_status=success directly must not fire a Purchase.
   const [verified, setVerified] = useState(false)
-  const [booking] = useState(loadBooking)
+  const [booking] = useState(() => given || loadBooking())
   const slot = booking?.slotId ? findSlot(booking.slotId) : null
   const back = landingUrl()
 
@@ -52,9 +70,9 @@ export default function PaymentStatus({ initial }) {
     return pollPaymentStatus(booking.orderId, (s) => {
       setVerified(s === 'success')
       setStatus(s)
-      setStatusInUrl(s)
+      if (!onBack) setStatusInUrl(s)
     })
-  }, [status, booking.orderId])
+  }, [status, booking.orderId, onBack])
 
   // Conversion events, once per order, so a refresh doesn't double count.
   useEffect(() => {
@@ -108,13 +126,14 @@ export default function PaymentStatus({ initial }) {
 
       <div className={`relative w-full max-w-lg overflow-hidden rounded-2xl border bg-modal text-center ${t.ring}`}>
         <div className={`h-[3px] w-full bg-gradient-to-r ${t.line}`} />
-        <a
+        <BackLink
+          onBack={onBack}
           href={back}
           aria-label="Close"
           className="group absolute top-4 right-4 rounded-full bg-white/10 p-1.5 text-white transition-colors hover:bg-white/20"
         >
           <CloseIcon className="size-3.5 transition-transform duration-200 group-hover:rotate-90" />
-        </a>
+        </BackLink>
         <div className="px-6 pt-8 pb-7 sm:px-8">
           <div className="mx-auto mb-5 w-fit rounded-md bg-white px-3 py-1.5">
             <img src={logo} alt="Market Academy" width="268" height="78" className="h-auto w-[110px]" />
@@ -126,14 +145,14 @@ export default function PaymentStatus({ initial }) {
           <Details slot={slot} />
 
           {status === 'failed' && (
-            <a href={back} className="mt-6 block w-full rounded-full bg-red-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700">
+            <BackLink onBack={onBack} href={back} className="mt-6 block w-full rounded-full bg-red-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700">
               Try Again
-            </a>
+            </BackLink>
           )}
           {status !== 'failed' && (
-            <a href={back} className="mt-6 inline-block text-sm font-semibold text-ma-blue-light hover:underline">
+            <BackLink onBack={onBack} href={back} className="mt-6 inline-block text-sm font-semibold text-ma-blue-light hover:underline">
               Back to workshop page
-            </a>
+            </BackLink>
           )}
           <p className="mt-5 text-xs text-faint">
             Need help? {CONTACT.phoneDisplay} · {CONTACT.email}

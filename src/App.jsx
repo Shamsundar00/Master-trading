@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BookingProvider, useBooking } from './context/BookingContext'
 import { initSmoothScroll } from './lib/smoothScroll'
+import { STATUS_EVENT } from './lib/booking'
 import Header from './components/sections/Header'
 import Hero from './components/sections/Hero'
 import Stats from './components/sections/Stats'
@@ -51,9 +52,35 @@ function Landing() {
   )
 }
 
+// Status from the Cashfree return URL (?payment_status=…). Guarded so the page can be pre-rendered.
+const statusFromUrl = () => {
+  if (typeof window === 'undefined') return null
+  const s = new URLSearchParams(window.location.search).get('payment_status')
+  return STATUSES.includes(s) ? s : null
+}
+
 export default function App() {
-  const status = new URLSearchParams(location.search).get('payment_status')
-  if (STATUSES.includes(status)) return <PaymentStatus initial={status} />
+  const [view, setView] = useState(() => ({ status: statusFromUrl(), booking: null, inPage: false }))
+
+  // Demo bookings switch to the status screen in place instead of navigating.
+  useEffect(() => {
+    const show = (e) => {
+      window.scrollTo(0, 0)
+      setView({ status: e.detail.status, booking: e.detail.booking, inPage: true })
+    }
+    window.addEventListener(STATUS_EVENT, show)
+    return () => window.removeEventListener(STATUS_EVENT, show)
+  }, [])
+
+  if (view.status) {
+    return (
+      <PaymentStatus
+        initial={view.status}
+        booking={view.booking}
+        onBack={view.inPage ? () => setView({ status: null, booking: null, inPage: false }) : undefined}
+      />
+    )
+  }
   return (
     <BookingProvider>
       <Landing />

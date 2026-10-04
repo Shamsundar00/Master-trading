@@ -15,7 +15,13 @@ npm install
 npm run dev        # http://localhost:5173
 npm run build      # static output in dist/
 npm run preview    # serve dist/ locally
+npm run build:preview  # one shareable HTML file → preview/Market-Academy-999-Workshop-Preview.html
 ```
+
+`build:preview` makes a single self-contained HTML file for team reviews (all JS, CSS and images
+inlined; fonts and the map load online). The landing markup is pre-rendered, so it still shows in
+viewers that block JavaScript (e.g. iPhone Quick Look). Booking runs in demo mode and tracking is
+off, so testing it never creates real leads or ad conversions.
 
 `dist/` is plain static files. Assets use relative paths (`base: './'`), so the same build works
 when uploaded to **any sub-folder** (e.g. `marketacademy.in/expert-trading-workshop/`) or a

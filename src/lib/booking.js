@@ -26,6 +26,8 @@ const CFG = {
 }
 
 const STORAGE_KEY = 'ma_workshop_booking'
+// Fired to show a payment-status screen without navigating (demo mode).
+export const STATUS_EVENT = 'ma:payment-status'
 const query = () => new URLSearchParams(location.search)
 
 export const isBookingConfigured = () => Boolean(CFG.registerUrl)
@@ -158,8 +160,11 @@ export async function startBooking(form) {
 
   if (!isBookingConfigured()) {
     if (isDemoMode()) {
-      saveBooking({ orderId: `DEMO-${Date.now()}`, userId: '', amount: EVENT.price, slotId: form.slot.id })
-      location.assign(`${location.pathname}?payment_status=processing&demo=1`)
+      const booking = { orderId: `DEMO-${Date.now()}`, userId: '', amount: EVENT.price, slotId: form.slot.id }
+      saveBooking(booking)
+      // Switch to the status screen in place (no URL change), so the demo also
+      // works when the page is opened as a local file on a phone.
+      window.dispatchEvent(new CustomEvent(STATUS_EVENT, { detail: { status: 'processing', booking } }))
       return {}
     }
     console.warn('[booking] VITE_REGISTER_URL is not set, see .env.example')

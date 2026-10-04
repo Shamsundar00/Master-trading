@@ -15,7 +15,10 @@ export default function Countdown({ target, caption, weight = 'bold', className 
         {units.map(([v, label], i) => (
           <div key={label} className="flex items-start gap-3">
             <div className="text-center">
-              <p className={`tabular text-2xl leading-8 text-white ${weight === 'bold' ? 'font-bold' : 'font-semibold'}`}>{v}</p>
+              {/* Pre-rendered digits are from build time; the first tick corrects them. */}
+              <p suppressHydrationWarning className={`tabular text-2xl leading-8 text-white ${weight === 'bold' ? 'font-bold' : 'font-semibold'}`}>
+                {v}
+              </p>
               <p className="text-[11px] leading-[16.5px] text-muted">{label}</p>
             </div>
             {i < units.length - 1 && <span className="text-xl leading-8 font-semibold text-white">:</span>}
