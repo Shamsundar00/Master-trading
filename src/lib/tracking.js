@@ -28,10 +28,14 @@ export function initTracking() {
   window.fbq('init', TRACKING.metaPixelId)
   window.fbq('track', 'PageView')
 
-  // LinkedIn Insight
+  // LinkedIn Insight (same snippet as marketacademy.in, including the lintrk queue)
   window._linkedin_partner_id = TRACKING.linkedInPartnerId
   window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []
   window._linkedin_data_partner_ids.push(TRACKING.linkedInPartnerId)
+  if (!window.lintrk) {
+    window.lintrk = (a, b) => window.lintrk.q.push([a, b])
+    window.lintrk.q = []
+  }
   addScript('https://snap.licdn.com/li.lms-analytics/insight.min.js')
 }
 

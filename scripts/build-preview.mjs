@@ -39,6 +39,9 @@ let html = await readFile(`${TMP}/client/index.html`, 'utf8')
 if (!html.includes('<div id="root"></div>')) throw new Error('root container not found')
 html = html.replace('<div id="root"></div>', () => `<div id="root">${markup}</div>`)
 
+// No tracking from team previews, not even the no-JavaScript fallbacks (iOS Quick Look renders them).
+html = html.replace(/<!-- tracking-noscript:start[\s\S]*?tracking-noscript:end -->/, '')
+
 const favicon = (await readFile('public/favicon.png')).toString('base64')
 html = html.replace(/<link rel="icon"[^>]*>/, `<link rel="icon" href="data:image/png;base64,${favicon}" sizes="any" />`)
 
