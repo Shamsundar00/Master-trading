@@ -31,6 +31,28 @@ page via `?payment_status=…`.
 Set `VITE_SITE_URL` to the final public URL before building so the canonical and Open Graph tags
 point to the right place (default: `https://marketacademy.in/expert-trading-workshop/`).
 
+## Hosting on marketacademy.in
+
+The page lives in its own folder on the main site, e.g. `https://marketacademy.in/expert-trading-workshop/`.
+
+1. Fill `.env.production` (see `.env.example`); `VITE_SITE_URL` must be the exact folder URL.
+2. `npm install && npm run build`
+3. Copy **everything inside `dist/`** into that folder:
+   - **Next.js site (static export):** put it in the site repo's `public/expert-trading-workshop/`
+     and redeploy; the export copies it to `out/expert-trading-workshop/index.html`.
+   - **Any static server / Cloudflare:** upload to `/expert-trading-workshop/` on the server.
+4. Open `https://marketacademy.in/expert-trading-workshop` and confirm it redirects to the URL with a
+   trailing `/` (the live site already does this with a 308). If the host serves pages without the
+   slash instead, add a redirect to the slashed URL so relative asset paths resolve.
+5. Make sure no existing Next.js page route uses the same folder name.
+
+Notes for sharing the domain with the other event pages:
+- GTM / Meta Pixel / LinkedIn IDs are the same as the rest of marketacademy.in, so visits and
+  conversions land in the existing accounts. Add a GTM trigger on the `workshop_purchase` event.
+- Booking cookies are prefixed `ma_ews_` and scoped to this folder, so they never collide with the
+  `orca_*` cookies the Price Action Masterclass flow uses.
+- Cashfree returns to this same folder (`?payment_status=processing`), so no extra routes are needed.
+
 ## Booking flow (for the Market Academy tech team)
 
 Same flow as the Price Action Masterclass page:

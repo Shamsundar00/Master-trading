@@ -48,7 +48,11 @@ function returnUrl() {
 }
 
 const getCookie = (name) => document.cookie.split('; ').find((c) => c.startsWith(`${name}=`))?.split('=')[1] || ''
-const setCookie = (k, v) => v != null && v !== '' && (document.cookie = `${k}=${encodeURIComponent(v)};path=/;max-age=3600;samesite=lax`)
+// Scoped to this page's folder and prefixed, so they never overwrite the orca_* cookies
+// the Price Action Masterclass page sets on the same marketacademy.in domain.
+const cookiePath = () => location.pathname.replace(/[^/]*$/, '') || '/'
+const setCookie = (k, v) =>
+  v != null && v !== '' && (document.cookie = `${k}=${encodeURIComponent(v)};path=${cookiePath()};max-age=3600;samesite=lax`)
 
 function authHeaders() {
   return CFG.token ? { Authorization: `Bearer ${CFG.token}` } : {}
@@ -64,10 +68,9 @@ export function saveBooking(info) {
   } catch {
     /* storage blocked; cookies below still carry the order */
   }
-  setCookie('orca_order_id', info.orderId)
-  setCookie('orca_user_id', info.userId)
-  setCookie('orca_amount', info.amount)
-  setCookie('orca_slug', EVENT.slug)
+  setCookie('ma_ews_order_id', info.orderId)
+  setCookie('ma_ews_user_id', info.userId)
+  setCookie('ma_ews_amount', info.amount)
 }
 
 export function loadBooking() {
@@ -79,8 +82,8 @@ export function loadBooking() {
   }
   const orderIdParam = query().get('order_id')
   const orderId =
-    (orderIdParam && orderIdParam !== '{order_id}' ? orderIdParam : '') || info?.orderId || decodeURIComponent(getCookie('orca_order_id'))
-  return { ...info, orderId, amount: Number(info?.amount || getCookie('orca_amount') || EVENT.price) }
+    (orderIdParam && orderIdParam !== '{order_id}' ? orderIdParam : '') || info?.orderId || decodeURIComponent(getCookie('ma_ews_order_id'))
+  return { ...info, orderId, amount: Number(info?.amount || getCookie('ma_ews_amount') || EVENT.price) }
 }
 
 function buildPayload({ slot, name, phone, email }) {
