@@ -30,7 +30,7 @@ export default function WhyWorkshop() {
             <span className="grad-text">Trading Class</span>
           </h2>
           <p className="mx-auto mt-2 max-w-4xl text-sm leading-5 text-muted md:text-lg md:leading-7">
-            No random tips, no shortcuts. In three focused hours, experts walk you through the concepts every trader needs, in a clear,
+            No random tips, no shortcuts. In four focused hours, experts walk you through the concepts every trader needs, in a clear,
             structured order.
           </p>
         </div>

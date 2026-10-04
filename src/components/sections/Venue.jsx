@@ -57,9 +57,9 @@ export default function Venue() {
                 <div className="space-y-1 text-sm font-medium text-white md:text-base">
                   <p>October 10 (Saturday) &amp; October 11 (Sunday)</p>
                   <p className="text-sm text-muted">
-                    Morning: 10:00 AM to 1:30 PM
+                    Morning: 9:00 AM to 1:00 PM
                     <br />
-                    Afternoon: 3:00 PM to 6:30 PM
+                    Afternoon: 2:00 PM to 6:00 PM
                   </p>
                 </div>
                 <div className="sm:text-right">

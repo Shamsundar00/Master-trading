@@ -15,7 +15,7 @@ export default function StickyBar() {
         <div className="flex min-h-9 items-center justify-between gap-3">
           <div className="hidden text-[13px] leading-5 font-semibold text-sticky-ink sm:block">
             <p>October 10 &amp; 11 (Sat &amp; Sun)</p>
-            <p>10AM - 1:30PM · 3PM - 6:30PM</p>
+            <p>9AM - 1PM · 2PM - 6PM</p>
           </div>
           <p className="text-xs leading-4 font-semibold text-sticky-ink sm:hidden">
             Oct 10 &amp; 11

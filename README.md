@@ -1,10 +1,10 @@
 # Market Academy: ₹999 Expert Trading Workshop (Chennai)
 
-Landing page for Market Academy's 3-hour offline Expert Trading Workshop,
+Landing page for Market Academy's 4-hour offline Expert Trading Workshop,
 built in **React + Tailwind CSS** with the same design system, behaviour and booking flow as
 [marketacademy.in/price-action-masterclass](https://marketacademy.in/price-action-masterclass/).
 
-- **Dates:** Sat 10 Oct & Sun 11 Oct 2026, 4 slots: 10:00 AM - 1:30 PM and 3:00 PM - 6:30 PM each day
+- **Dates:** Sat 10 Oct & Sun 11 Oct 2026, 4 slots: 9:00 AM - 1:00 PM and 2:00 PM - 6:00 PM each day
 - **Venue:** Sai Pride, A24, 3rd Phase, Thiru Vi Ka Industrial Estate, SIDCO Industrial Estate, Ekkaduthangal, Guindy, Chennai 600032
 - **Fee:** ₹999 booking fee, paid through Cashfree
 
@@ -46,8 +46,8 @@ Same flow as the Price Action Masterclass page:
 
 - An event record for this workshop (`VITE_EVENT_ID`, slug `VITE_EVENT_SLUG`) priced at ₹999.
 - Slot handling, either:
-  - **one ticket type per slot** → put each `event_ticket_type_id` in `SLOTS[].ticketTypeId`
-    in `src/config/event.js` (also enables live seat counts per slot), **or**
+  - **one ticket type per slot** → set `VITE_TICKET_TYPE_SAT_MORNING`, `…_SAT_AFTERNOON`,
+    `…_SUN_MORNING`, `…_SUN_AFTERNOON` (also enables live seat counts per slot), **or**
   - **one shared ticket type** → set `VITE_DEFAULT_TICKET_TYPE_ID` and read the chosen slot from
     the payload's `slot` object.
 - `return_url` from the payload honoured as the Cashfree return URL.
@@ -63,7 +63,7 @@ Payload sent to the register webhook (before encryption):
   "return_url": "https://…/?payment_status=processing&order_id={order_id}",
   "booked_by": { "name": "…", "mobile_number": "9876543210", "email_id": "…" },
   "attendees": [{ "first_name": "…", "last_name": "", "mobile_number": "…", "email_id": "…" }],
-  "slot": { "slot_id": "sat-morning", "date": "2026-10-10", "start_time": "10:00", "end_time": "13:30", "label": "Sat, 10 Oct · 10:00 AM - 1:30 PM" },
+  "slot": { "slot_id": "sat-morning", "date": "2026-10-10", "start_time": "09:00", "end_time": "13:00", "label": "Sat, 10 Oct · 9:00 AM - 1:00 PM" },
   "marketing": { "source": "website", "campaign": "?campaign= | ?utm_campaign= | website", "landing_page": "full URL incl. UTMs", "fbc": "_fbc", "fbp": "_fbp" }
 }
 ```

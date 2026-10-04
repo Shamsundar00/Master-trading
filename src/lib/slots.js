@@ -7,10 +7,10 @@ export const slotEnd = (slot) => new Date(`${slot.date}T${slot.end}:00+05:30`)
 
 const fmt = (opts) => new Intl.DateTimeFormat('en-IN', { timeZone: TZ, ...opts })
 
-// "10:00 AM" / "3:00 PM"
+// "9:00 AM" / "2:00 PM"
 export const formatTime = (d) => fmt({ hour: 'numeric', minute: '2-digit', hour12: true }).format(d).toUpperCase()
 
-// "10AM" / "1:30PM": compact form used in the sticky bar, minutes dropped when :00
+// "9AM" / "1:30PM": compact form used in the sticky bar, minutes dropped when :00
 export const formatTimeShort = (d) => {
   const t = fmt({ hour: 'numeric', minute: '2-digit', hour12: true }).format(d).toUpperCase().replace(/\s/g, '')
   return t.replace(':00', '')
@@ -27,7 +27,7 @@ export const formatDayMonth = (slot, style = 'short') =>
     ? fmt({ day: 'numeric', month: 'short' }).format(slotStart(slot))
     : `${fmt({ month: 'long' }).format(slotStart(slot))} ${fmt({ day: 'numeric' }).format(slotStart(slot))}`
 
-// "Sat, 10 Oct · 10:00 AM - 1:30 PM"
+// "Sat, 10 Oct · 9:00 AM - 1:00 PM"
 export const slotLabel = (slot) => `${formatWeekday(slot, 'short')}, ${formatDayMonth(slot)} · ${slotTimeRange(slot)}`
 
 // Slots grouped by date, preserving config order

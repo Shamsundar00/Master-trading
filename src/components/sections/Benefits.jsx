@@ -10,7 +10,7 @@ const BENEFITS = [
 
 const SNAPSHOT = [
   [ClockIcon, 'Duration', `${EVENT.durationLabel}, offline`],
-  [CalendarClockIcon, 'Slots', 'Sat 10 & Sun 11 Oct · 10AM / 3PM'],
+  [CalendarClockIcon, 'Slots', 'Sat 10 & Sun 11 Oct · 9AM / 2PM'],
   [MapPinIcon, 'Venue', 'Sai Pride, Guindy, Chennai'],
 ]
 

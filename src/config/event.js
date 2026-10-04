@@ -5,8 +5,8 @@
 export const EVENT = {
   name: 'Expert Trading Workshop',
   city: 'Chennai',
-  durationLabel: '3 Hours',
-  durationAdjective: '3-hour',
+  durationLabel: '4 Hours',
+  durationAdjective: '4-hour',
   // Booking fee in INR. The backend/Cashfree order decides the final charge;
   // this value is what the page displays.
   price: 999,
@@ -19,17 +19,19 @@ export const EVENT = {
 }
 
 // The four bookable slots. Times are IST.
-// ticketTypeId: the event_ticket_type_id for this slot on the backend. If the
-// backend uses one ticket type for every slot, leave these empty and set
-// VITE_DEFAULT_TICKET_TYPE_ID instead; the chosen slot is still sent in the payload.
+// ticketTypeId: the event_ticket_type_id for this slot on the backend, set via
+// VITE_TICKET_TYPE_* in the env file. If the backend uses one ticket type for every
+// slot, leave those empty and set VITE_DEFAULT_TICKET_TYPE_ID; the chosen slot is
+// still sent in the payload.
 // status: 'available' | 'filling' | 'soldout' (manual override); live seat counts
 // from the events API (when configured) take priority.
 // seatsLeft: number to show "N seats left", or null to hide the count.
+const env = import.meta.env
 export const SLOTS = [
-  { id: 'sat-morning', date: '2026-10-10', start: '10:00', end: '13:30', session: 'Morning Batch', ticketTypeId: '', status: 'available', seatsLeft: null },
-  { id: 'sat-afternoon', date: '2026-10-10', start: '15:00', end: '18:30', session: 'Afternoon Batch', ticketTypeId: '', status: 'available', seatsLeft: null },
-  { id: 'sun-morning', date: '2026-10-11', start: '10:00', end: '13:30', session: 'Morning Batch', ticketTypeId: '', status: 'available', seatsLeft: null },
-  { id: 'sun-afternoon', date: '2026-10-11', start: '15:00', end: '18:30', session: 'Afternoon Batch', ticketTypeId: '', status: 'available', seatsLeft: null },
+  { id: 'sat-morning', date: '2026-10-10', start: '09:00', end: '13:00', session: 'Morning Batch', ticketTypeId: env.VITE_TICKET_TYPE_SAT_MORNING || '', status: 'available', seatsLeft: null },
+  { id: 'sat-afternoon', date: '2026-10-10', start: '14:00', end: '18:00', session: 'Afternoon Batch', ticketTypeId: env.VITE_TICKET_TYPE_SAT_AFTERNOON || '', status: 'available', seatsLeft: null },
+  { id: 'sun-morning', date: '2026-10-11', start: '09:00', end: '13:00', session: 'Morning Batch', ticketTypeId: env.VITE_TICKET_TYPE_SUN_MORNING || '', status: 'available', seatsLeft: null },
+  { id: 'sun-afternoon', date: '2026-10-11', start: '14:00', end: '18:00', session: 'Afternoon Batch', ticketTypeId: env.VITE_TICKET_TYPE_SUN_AFTERNOON || '', status: 'available', seatsLeft: null },
 ]
 
 export const VENUE = {
@@ -76,12 +78,12 @@ export const FAQS = [
     a: 'Anyone who has been planning to learn trading: complete beginners, working professionals, and traders who want a more structured approach. We start from the basics, so no prior trading experience is needed.',
   },
   {
-    q: 'What will I learn in 3 hours?',
+    q: 'What will I learn in 4 hours?',
     a: 'The key concepts every trader needs, in a structured order: trading basics, market analysis, chart analysis, entry and exit planning, risk management and strategy selection.',
   },
   {
     q: 'What are the dates and slots?',
-    a: 'The workshop runs on Saturday, 10 October and Sunday, 11 October 2026. Each day has two slots: 10:00 AM to 1:30 PM and 3:00 PM to 6:30 PM. You choose one slot while booking.',
+    a: 'The workshop runs on Saturday, 10 October and Sunday, 11 October 2026. Each day has two slots: 9:00 AM to 1:00 PM and 2:00 PM to 6:00 PM. You choose one slot while booking.',
   },
   {
     q: 'How much does it cost and how do I pay?',

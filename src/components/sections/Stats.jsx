@@ -1,5 +1,5 @@
 const STATS = [
-  ['3 Hours', 'Focused Expert Session'],
+  ['4 Hours', 'Focused Expert Session'],
   ['4 Slots', 'Pick What Suits You'],
   ['2 Days', 'Sat 10 & Sun 11 Oct'],
   ['₹999', 'Booking Fee'],

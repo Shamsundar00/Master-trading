@@ -68,11 +68,11 @@ export default function Hero() {
             <h1 className="mt-6 text-[25px] leading-[33px] font-semibold text-white sm:text-[28px] md:text-2xl lg:mt-8 lg:text-4xl lg:leading-[1.25] xl:text-[44px] xl:leading-[55px]">
               Learn Trading the Structured Way.
               <br className="lg:hidden" />{' '}
-              <span className="grad-text pe-2">From Basics to Strategy, in 3 Hours.</span>
+              <span className="grad-text pe-2">From Basics to Strategy, in 4 Hours.</span>
             </h1>
 
             <div className="mt-6 space-y-4 text-xs sm:text-sm lg:space-y-2">
-              <p className="font-medium text-white">3-Hour Expert Trading Workshop in Chennai. Booking Fee Just ₹{EVENT.price}!</p>
+              <p className="font-medium text-white">4-Hour Expert Trading Workshop in Chennai. Booking Fee Just ₹{EVENT.price}!</p>
               <p className="text-muted">
                 Been planning to learn trading for a long time? Don&apos;t miss this. Learn trading basics, market analysis, chart analysis, entry,
                 exit, risk management and strategy selection in one structured, expert-led session.
@@ -84,9 +84,9 @@ export default function Hero() {
                 Oct 10 &amp; 11, 2026
               </MetaItem>
               <MetaItem icon={ClockIcon} label="Slots" className="md:col-span-4">
-                10AM - 1:30PM
+                9AM - 1PM
                 <br />
-                3PM - 6:30PM
+                2PM - 6PM
               </MetaItem>
               <MetaItem icon={MapPinIcon} label="Venue" className="hidden md:col-span-4 md:block">
                 Guindy, Chennai
